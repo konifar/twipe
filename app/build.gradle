@@ -86,4 +86,7 @@ dependencies {
   compile('com.crashlytics.sdk.android:crashlytics:2.2.3@aar') {
     transitive = true;
   }
+  compile('com.twitter.sdk.android:twitter:1.4.0@aar') {
+    transitive = true;
+  }
 }
