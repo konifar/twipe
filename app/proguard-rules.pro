@@ -116,3 +116,5 @@
 -keep class * extends dagger.internal.Binding
 -keep class * extends dagger.internal.ModuleAdapter
 -keep class * extends dagger.internal.StaticInjection
+
+-include ../proguard-com.twitter.sdk.android.twitter.txt
