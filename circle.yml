@@ -6,12 +6,12 @@ dependencies:
   pre:
     - echo y | android update sdk --no-ui --all --filter "tools"
     - echo y | android update sdk --no-ui --all --filter "platform-tools"
-    - echo y | android update sdk --no-ui --all --filter "android-22,build-tools-22"
+    - echo y | android update sdk --no-ui --all --filter "android-19,build-tools-19.1.0,android-22,build-tools-22.0.0"
     - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
     - echo y | android update sdk --no-ui --all --filter "extra-android-support"
     - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository"
     - echo y | android update sdk --no-ui --all --filter "extra-google-google_play_services"
-    - echo y | android update sdk --no-ui --all --filter "addon-google_apis-google-21"
+    - echo y | android update sdk --no-ui --all --filter "addon-google_apis-google-22"
     - echo y | android update lib-project --path ./appcompat --target android-22
     - echo y | android update project --path ./core --library ../appcompat --target android-22
 
