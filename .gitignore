@@ -1,6 +1,10 @@
 # Built application files
 *.apk
 *.ap_
+class_files.txt
+mapping.txt
+seeds.txt
+unused.txt
 
 # Files for the Dalvik VM
 *.dex
@@ -35,3 +39,7 @@ Thumbs.db
 *.swp
 *.bak
 *.orig
+
+# Secret
+secret.gradle
+*.jks
