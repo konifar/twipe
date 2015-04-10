@@ -24,3 +24,8 @@ test:
   override:
     - ./gradlew clean assembleDebug
 
+deployment:
+  master:
+    branch: master
+    commands:
+      - ./deploy.sh

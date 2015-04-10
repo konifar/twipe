@@ -1,0 +1,1 @@
+curl -F "file=@app/build/outputs/apk/app-debug.apk" -F "token=${DEPLOY_GATE_API_KEY}" -F "message=https://circleci.com/gh/konifar/twipe/${CIRCLE_BUILD_NUM}" -F "distribution_key=2ffeb5c351cfb19b336b988caeea0eb0d4cd5e93" -F "release_note=https://circleci.com/gh/konifar/twipe/${CIRCLE_BUILD_NUM}" https://deploygate.com/api/users/konifar/apps
