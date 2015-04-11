@@ -2,6 +2,8 @@ package com.konifar.twipe.presentation.internal.di.modules;
 
 import android.content.Context;
 import com.konifar.twipe.TwipeApplication;
+import com.konifar.twipe.data.repository.TweetRepositoryImpl;
+import com.konifar.twipe.domain.repository.TweetRepository;
 import com.konifar.twipe.presentation.navigation.ActivityNavigator;
 import dagger.Module;
 import dagger.Provides;
@@ -24,5 +26,9 @@ public class ApplicationModule {
 
   @Provides @Singleton ActivityNavigator provideActivityNavigator() {
     return new ActivityNavigator();
+  }
+
+  @Provides @Singleton TweetRepository provideTweetRepository(TweetRepositoryImpl tweetRepository) {
+    return tweetRepository;
   }
 }
