@@ -5,6 +5,9 @@ import com.konifar.twipe.TwipeApplication;
 import com.konifar.twipe.data.repository.TweetRepositoryImpl;
 import com.konifar.twipe.domain.repository.TweetRepository;
 import com.konifar.twipe.presentation.navigation.ActivityNavigator;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.services.StatusesService;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -30,5 +33,10 @@ public class ApplicationModule {
 
   @Provides @Singleton TweetRepository provideTweetRepository(TweetRepositoryImpl tweetRepository) {
     return tweetRepository;
+  }
+
+  @Provides @Singleton StatusesService provideStatusesService() {
+    TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
+    return twitterApiClient.getStatusesService();
   }
 }

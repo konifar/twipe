@@ -4,12 +4,10 @@ import com.konifar.twipe.domain.model.HashtagModel;
 import com.konifar.twipe.domain.model.MediaModel;
 import com.konifar.twipe.domain.model.MentionModel;
 import com.konifar.twipe.domain.model.TweetAttachmentModel;
-import com.konifar.twipe.domain.model.TweetModel;
 import com.konifar.twipe.domain.model.UrlModel;
 import com.twitter.sdk.android.core.models.HashtagEntity;
 import com.twitter.sdk.android.core.models.MediaEntity;
 import com.twitter.sdk.android.core.models.MentionEntity;
-import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.core.models.TweetEntities;
 import com.twitter.sdk.android.core.models.UrlEntity;
 import java.util.ArrayList;
@@ -18,21 +16,11 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * Mapper class used to transform {@link TweetEntities} (in the data layer)
- * to {@link TweetAttachmentModel} in the domain layer.
- */
 @Singleton public class TweetEntitiesMapper {
-  @Inject
-  public TweetEntitiesMapper() {
+
+  @Inject public TweetEntitiesMapper() {
   }
 
-  /**
-   * Transform a {@link TweetEntities} into an {@link TweetAttachmentModel}.
-   *
-   * @param tweetEntities Object to be transformed.
-   * @return {@link TweetModel} if valid {@link Tweet} otherwise null.
-   */
   public TweetAttachmentModel transform(TweetEntities tweetEntities) {
     TweetAttachmentModel tweetAttachmentModel = null;
     if (tweetEntities != null) {
