@@ -2,9 +2,6 @@ package com.konifar.twipe.data.exception;
 
 import com.konifar.twipe.domain.exception.ErrorBundle;
 
-/**
- * Wrapper around Exceptions used to manage errors in the repository.
- */
 public class RepositoryErrorBundle implements ErrorBundle {
 
   private final Exception exception;

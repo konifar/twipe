@@ -10,9 +10,7 @@ import javax.inject.Singleton;
 @Singleton
 public class ActivityNavigator {
 
-  @Inject
-  public void ActivityNavigator() {
-    // Do nothing
+  @Inject public ActivityNavigator() {
   }
 
   /**

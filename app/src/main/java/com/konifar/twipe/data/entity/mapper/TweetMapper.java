@@ -9,62 +9,45 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * Mapper class used to transform {@link Tweet} (in the data layer) to {@link TweetModel}
- * in the domain layer.
- */
-@Singleton class TweetMapper {
+@Singleton public class TweetMapper {
 
-  private UserMapper userEntityDataMapper;
-  private TweetEntitiesMapper tweetEntitiesMapper;
+  private final UserMapper userMapper;
+  private final TweetEntitiesMapper tweetEntitiesMapper;
 
-  @Inject
-  public TweetMapper(UserMapper userEntityDataMapper, TweetEntitiesMapper tweetEntitiesMapper) {
-    this.userEntityDataMapper = userEntityDataMapper;
-    this.tweetEntitiesMapper = tweetEntitiesMapper;
+  @Inject public TweetMapper() {
+    this.userMapper = new UserMapper();
+    this.tweetEntitiesMapper = new TweetEntitiesMapper();
   }
 
-  /**
-   * Transform a {@link Tweet} into an {@link TweetModel}.
-   *
-   * @param tweetEntity Object to be transformed.
-   * @return {@link TweetModel} if valid {@link Tweet} otherwise null.
-   */
-  public TweetModel transform(Tweet tweetEntity) {
+  public TweetModel transform(Tweet tweet) {
     TweetModel tweetModel = null;
-    if (tweetEntity != null) {
-      tweetModel = new TweetModel(tweetEntity.id);
-      tweetModel.setText(tweetEntity.text);
-      tweetModel.setSource(tweetEntity.source);
-      tweetModel.setCreatedAt(DateUtil.twitterStringToDate(tweetEntity.createdAt));
-      tweetModel.setInReplyToScreenName(tweetEntity.inReplyToScreenName);
-      tweetModel.setInReplyToUserId(tweetEntity.inReplyToUserId);
-      tweetModel.setInReplyToStatusId(tweetEntity.inReplyToStatusId);
-      tweetModel.setFavoriteCount(tweetEntity.favoriteCount);
-      tweetModel.setRetweetCount(tweetEntity.retweetCount);
-      tweetModel.setFavorited(tweetEntity.favorited);
-      tweetModel.setTruncated(tweetEntity.truncated);
-      tweetModel.setRetweeted(tweetEntity.retweeted);
-      tweetModel.setPossiblySensitive(tweetEntity.possiblySensitive);
-      tweetModel.setUser(userEntityDataMapper.transform(tweetEntity.user));
-      tweetModel.setRetweetedStatus(transform(tweetEntity.retweetedStatus));
-      tweetModel.setAttachment(tweetEntitiesMapper.transform(tweetEntity.entities));
+    if (tweet != null) {
+      tweetModel = new TweetModel(tweet.id);
+      tweetModel.setText(tweet.text);
+      tweetModel.setSource(tweet.source);
+      tweetModel.setCreatedAt(DateUtil.twitterStringToDate(tweet.createdAt));
+      tweetModel.setInReplyToScreenName(tweet.inReplyToScreenName);
+      tweetModel.setInReplyToUserId(tweet.inReplyToUserId);
+      tweetModel.setInReplyToStatusId(tweet.inReplyToStatusId);
+      tweetModel.setFavoriteCount(tweet.favoriteCount);
+      tweetModel.setRetweetCount(tweet.retweetCount);
+      tweetModel.setFavorited(tweet.favorited);
+      tweetModel.setTruncated(tweet.truncated);
+      tweetModel.setRetweeted(tweet.retweeted);
+      tweetModel.setPossiblySensitive(tweet.possiblySensitive);
+      tweetModel.setUser(userMapper.transform(tweet.user));
+      tweetModel.setRetweetedStatus(transform(tweet.retweetedStatus));
+      tweetModel.setAttachment(tweetEntitiesMapper.transform(tweet.entities));
     }
 
     return tweetModel;
   }
 
-  /**
-   * Transform a Collection of {@link Tweet} into a Collection of {@link TweetModel}.
-   *
-   * @param tweetEntityCollection Object Collection to be transformed.
-   * @return {@link Tweet} if valid {@link Tweet} otherwise null.
-   */
-  public Collection<TweetModel> transform(Collection<Tweet> tweetEntityCollection) {
+  public Collection<TweetModel> transform(Collection<Tweet> tweets) {
     List<TweetModel> tweetModelList = new ArrayList<>(20);
     TweetModel tweetModel;
-    for (Tweet tweetEntity : tweetEntityCollection) {
-      tweetModel = transform(tweetEntity);
+    for (Tweet tweet : tweets) {
+      tweetModel = transform(tweet);
       if (tweetModel != null) {
         tweetModelList.add(tweetModel);
       }

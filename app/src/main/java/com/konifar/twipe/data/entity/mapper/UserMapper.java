@@ -6,22 +6,11 @@ import com.twitter.sdk.android.core.models.User;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * Mapper class used to transform {@link User} (in the data layer) to {@link UserModel}
- * in the domain layer.
- */
 @Singleton class UserMapper {
 
-  @Inject
-  public UserMapper() {
+  @Inject UserMapper() {
   }
 
-  /**
-   * Transform a {@link User} into an {@link UserModel}.
-   *
-   * @param user Object to be transformed.
-   * @return {@link UserModel} if valid {@link User} otherwise null.
-   */
   public UserModel transform(User user) {
     UserModel userModel = null;
     if (user != null) {
