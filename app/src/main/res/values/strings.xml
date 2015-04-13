@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Twipe</string>
+  <string name="app_name">Twipe</string>
+  <string name="logout">ログアウト</string>
+  <string name="retweeted_msg">%1$sさんがリツイートしました</string>
 </resources>

@@ -19,7 +19,7 @@ public class TweetRepositoryImpl implements TweetRepository {
     this.tweetDataStoreFactory = dataStoreFactory;
   }
 
-  @Override public void getHomeTweetList(int lastTweetId, final TweetListCallback callback) {
+  @Override public void getHomeTweetList(Long lastTweetId, final TweetListCallback callback) {
     final TweetDataStore tweetDataStore = this.tweetDataStoreFactory.createApiDataStore();
     tweetDataStore.getHomeTweetList(lastTweetId, GET_TWEET_COUNT,
         new TweetDataStore.TweetListCallback() {
@@ -33,7 +33,7 @@ public class TweetRepositoryImpl implements TweetRepository {
         });
   }
 
-  @Override public void getUserTweetList(int userId, int lastTweetId,
+  @Override public void getUserTweetList(long userId, Long lastTweetId,
       final TweetListCallback callback) {
     final TweetDataStore tweetDataStore = this.tweetDataStoreFactory.createApiDataStore();
     tweetDataStore.getUserTweetList(userId, lastTweetId, GET_TWEET_COUNT,

@@ -1,8 +1,46 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="UserImage">
+        <item name="android:layout_width">@dimen/img_thumb</item>
+        <item name="android:layout_height">@dimen/img_thumb</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:contentDescription">UserImage</item>
+    </style>
+
+    <style name="TapFeedback">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_feedback</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="TextContent">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="TextSub">
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textColor">@color/grey600</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextSub.Action">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">@dimen/spacing_small</item>
+    </style>
+
+    <style name="TextUserName">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:lines">1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
 </resources>

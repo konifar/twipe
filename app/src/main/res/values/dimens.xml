@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- space -->
+  <dimen name="spacing_xsmall">4dp</dimen>
+  <dimen name="spacing_small">8dp</dimen>
+  <dimen name="spacing">16dp</dimen>
+  <dimen name="spacing_large">20dp</dimen>
+  <dimen name="spacing_xlarge">24dp</dimen>
+
+  <!-- Text -->
+  <dimen name="text_xsmall">10sp</dimen>
+  <dimen name="text_small">14sp</dimen>
+  <dimen name="text_medium">16sp</dimen>
+  <dimen name="text_large">20sp</dimen>
+  <dimen name="text_xlarge">24sp</dimen>
+
+  <!-- Line -->
+  <dimen name="line_small">1sp</dimen>
+  <dimen name="line_medium">2sp</dimen>
+
+  <!-- Image -->
+  <dimen name="img_thumb">60dp</dimen>
+
+  <!-- Radius -->
+  <dimen name="radius_medium">4dp</dimen>
+
+</resources>

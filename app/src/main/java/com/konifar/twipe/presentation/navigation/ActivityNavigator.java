@@ -1,6 +1,7 @@
 package com.konifar.twipe.presentation.navigation;
 
 import android.content.Context;
+import com.konifar.twipe.presentation.view.activity.TweetListActivity;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -13,12 +14,13 @@ public class ActivityNavigator {
   @Inject public ActivityNavigator() {
   }
 
-  /**
-   * Goes to the twitter list screen.
-   *
-   * @param context A Context needed to open the destiny activity.
-   */
-  public void navigateToTwitterList(Context context) {
+  public void navigateToTweetList(Context context) {
+    if (context != null) {
+      TweetListActivity.start(context);
+    }
+  }
+
+  public void navigateToTweet(Context context, long tweetId) {
     if (context != null) {
       // TODO
     }

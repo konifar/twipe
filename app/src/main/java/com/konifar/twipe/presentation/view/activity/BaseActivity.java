@@ -27,7 +27,7 @@ public class BaseActivity extends FragmentActivity {
    * @param fragment The fragment to be added.
    */
   protected void addFragment(int containerViewId, Fragment fragment) {
-    FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     ft.add(containerViewId, fragment);
     ft.commit();
   }
