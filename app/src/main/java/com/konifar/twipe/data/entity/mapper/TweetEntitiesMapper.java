@@ -45,11 +45,13 @@ import javax.inject.Singleton;
 
   private Collection<HashtagModel> transformHashtags(List<HashtagEntity> hashtagEntityCollection) {
     List<HashtagModel> hashtagModelList = new ArrayList<>();
-    HashtagModel hashtagModel;
-    for (HashtagEntity tweetEntity : hashtagEntityCollection) {
-      hashtagModel = transform(tweetEntity);
-      if (hashtagModel != null) {
-        hashtagModelList.add(hashtagModel);
+    if (hashtagEntityCollection != null) {
+      HashtagModel hashtagModel;
+      for (HashtagEntity tweetEntity : hashtagEntityCollection) {
+        hashtagModel = transform(tweetEntity);
+        if (hashtagModel != null) {
+          hashtagModelList.add(hashtagModel);
+        }
       }
     }
 
@@ -68,11 +70,13 @@ import javax.inject.Singleton;
 
   private Collection<MediaModel> transformMedias(List<MediaEntity> mediaEntityCollection) {
     List<MediaModel> mediaModelList = new ArrayList<>();
-    MediaModel mediaModel;
-    for (MediaEntity tweetEntity : mediaEntityCollection) {
-      mediaModel = transform(tweetEntity);
-      if (mediaModel != null) {
-        mediaModelList.add(mediaModel);
+    if (mediaEntityCollection != null) {
+      MediaModel mediaModel;
+      for (MediaEntity tweetEntity : mediaEntityCollection) {
+        mediaModel = transform(tweetEntity);
+        if (mediaModel != null) {
+          mediaModelList.add(mediaModel);
+        }
       }
     }
 
@@ -90,11 +94,13 @@ import javax.inject.Singleton;
 
   private Collection<UrlModel> transformUrls(List<UrlEntity> urlEntityCollection) {
     List<UrlModel> urlModelList = new ArrayList<>();
-    UrlModel urlModel;
-    for (UrlEntity urlEntity : urlEntityCollection) {
-      urlModel = transform(urlEntity);
-      if (urlModel != null) {
-        urlModelList.add(urlModel);
+    if (urlEntityCollection != null) {
+      UrlModel urlModel;
+      for (UrlEntity urlEntity : urlEntityCollection) {
+        urlModel = transform(urlEntity);
+        if (urlModel != null) {
+          urlModelList.add(urlModel);
+        }
       }
     }
 
@@ -113,11 +119,13 @@ import javax.inject.Singleton;
 
   private Collection<MentionModel> transformMentions(List<MentionEntity> mentionEntityCollection) {
     List<MentionModel> mentionModelList = new ArrayList<>();
-    MentionModel mentionModel;
-    for (MentionEntity mentionEntity : mentionEntityCollection) {
-      mentionModel = transform(mentionEntity);
-      if (mentionModel != null) {
-        mentionModelList.add(mentionModel);
+    if (mentionEntityCollection != null) {
+      MentionModel mentionModel;
+      for (MentionEntity mentionEntity : mentionEntityCollection) {
+        mentionModel = transform(mentionEntity);
+        if (mentionModel != null) {
+          mentionModelList.add(mentionModel);
+        }
       }
     }
 

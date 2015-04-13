@@ -11,6 +11,10 @@
       android:icon="@drawable/ic_launcher"
       android:theme="@style/NoActionBarTheme">
 
+    <meta-data
+        android:name="io.fabric.ApiKey"
+        android:value="eef593299f106222b116410ba972260f992134e5"/>
+
     <activity
         android:name=".presentation.view.activity.MainActivity"
         android:configChanges="keyboard|keyboardHidden|orientation"
@@ -22,9 +26,16 @@
       </intent-filter>
     </activity>
 
-    <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="eef593299f106222b116410ba972260f992134e5"/>
+    <activity
+        android:name=".presentation.view.activity.LoginActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation"
+        android:launchMode="singleTask"
+        android:label="@string/app_name"/>
+
+    <activity
+        android:name=".presentation.view.activity.TweetListActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation"
+        android:label="@string/app_name"/>
 
   </application>
 

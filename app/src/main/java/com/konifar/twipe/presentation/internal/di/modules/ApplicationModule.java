@@ -2,7 +2,9 @@ package com.konifar.twipe.presentation.internal.di.modules;
 
 import android.content.Context;
 import com.konifar.twipe.TwipeApplication;
+import com.konifar.twipe.data.executor.JobExecutor;
 import com.konifar.twipe.data.repository.TweetRepositoryImpl;
+import com.konifar.twipe.domain.executor.ThreadExecutor;
 import com.konifar.twipe.domain.repository.TweetRepository;
 import com.konifar.twipe.presentation.navigation.ActivityNavigator;
 import com.twitter.sdk.android.core.TwitterApiClient;
@@ -25,6 +27,10 @@ public class ApplicationModule {
 
   @Provides @Singleton Context provideApplicationContext() {
     return this.app;
+  }
+
+  @Provides @Singleton ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
+    return jobExecutor;
   }
 
   @Provides @Singleton ActivityNavigator provideActivityNavigator() {

@@ -4,8 +4,8 @@ import com.konifar.twipe.domain.exception.ErrorBundle;
 import com.konifar.twipe.domain.model.TweetModel;
 import java.util.Collection;
 
-interface GetHomeTweetListUseCase extends UseCase {
-  void execute(long lastTweetId);
+public interface GetHomeTweetListUseCase extends UseCase {
+  void execute(Long lastTweetId);
 
   public class OnLoadedEvent {
     public final Collection<TweetModel> tweetModels;
