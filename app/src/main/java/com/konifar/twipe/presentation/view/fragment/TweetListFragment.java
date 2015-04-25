@@ -7,10 +7,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.konifar.endlessscroll.EndlessScrollListener;
 import com.konifar.twipe.R;
 import com.konifar.twipe.domain.model.TweetModel;
 import com.konifar.twipe.presentation.internal.di.components.TweetComponent;
@@ -29,12 +31,6 @@ public class TweetListFragment extends BaseFragment implements TweetListView {
 
   private TweetAdapter tweetsAdapter;
   private TweetListListener tweetListListener;
-  //private UsersAdapter.OnItemClickListener onItemClickListener =
-  //    new UsersAdapter.OnItemClickListener() {
-  //      @Override public void onUserItemClicked(UserModel userModel) {
-  //
-  //      }
-  //    };
 
   public TweetListFragment() {
     super();
@@ -78,11 +74,21 @@ public class TweetListFragment extends BaseFragment implements TweetListView {
   }
 
   private void init() {
-    this.getComponent(TweetComponent.class).inject(this);
-    this.tweetListPresenter.setView(this);
-    this.tweetsAdapter = new TweetAdapter(getActivity());
-    this.listview.setAdapter(tweetsAdapter);
-    //this.tweetsAdapter.setOnItemClickListener(onItemClickListener);
+    getComponent(TweetComponent.class).inject(this);
+    tweetListPresenter.setView(this);
+    tweetsAdapter = new TweetAdapter(getActivity());
+    listview.setAdapter(tweetsAdapter);
+    listview.setOnScrollListener(new EndlessScrollListener() {
+      @Override public void onLoadMore(int page, int totalItemsCount) {
+        TweetModel tweetModel = tweetsAdapter.getItem(tweetsAdapter.getCount() - 1);
+        tweetListPresenter.loadTweetList(tweetModel.getId() - 1);
+      }
+    });
+    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        tweetListPresenter.onTweetClicked(tweetsAdapter.getItem(position));
+      }
+    });
   }
 
   @Override public void showLoading() {
@@ -124,7 +130,7 @@ public class TweetListFragment extends BaseFragment implements TweetListView {
   }
 
   private void loadTweetList() {
-    this.tweetListPresenter.loadTweetList();
+    this.tweetListPresenter.loadTweetList(null);
   }
 
   //@OnClick(R.id.bt_retry) void onButtonRetryClick() {
