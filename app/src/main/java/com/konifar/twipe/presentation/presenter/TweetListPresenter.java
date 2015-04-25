@@ -33,10 +33,10 @@ public class TweetListPresenter implements Presenter {
     EventBus.getDefault().unregister(this);
   }
 
-  public void loadTweetList() {
+  public void loadTweetList(Long lastTweetId) {
     this.hideViewRetry();
     this.showViewLoading();
-    this.getTweetList();
+    this.getTweetList(lastTweetId);
   }
 
   public void onTweetClicked(TweetModel tweetModel) {
@@ -67,8 +67,8 @@ public class TweetListPresenter implements Presenter {
     this.tweetListView.renderTweetList(tweets);
   }
 
-  private void getTweetList() {
-    this.getHomeTweetListUseCase.execute(null);
+  private void getTweetList(Long lastTweetId) {
+    this.getHomeTweetListUseCase.execute(lastTweetId);
   }
 
   public void onEventMainThread(GetHomeTweetListUseCase.OnLoadedEvent event) {
