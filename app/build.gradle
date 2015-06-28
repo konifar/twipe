@@ -83,6 +83,8 @@ dependencies {
   compile 'de.greenrobot:eventbus:2.4.0'
   compile 'org.ocpsoft.prettytime:prettytime:3.2.5.Final'
 
+  compile 'com.pnikosis:materialish-progress:1.5'
+
   compile('com.crashlytics.sdk.android:crashlytics:2.2.3@aar') {
     transitive = true;
   }
