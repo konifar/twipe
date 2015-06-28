@@ -1,140 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/spacing_large">
 
+  <TextView
+      android:id="@+id/txt_retweeted_msg"
+      style="@style/TextSub"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing"
+      android:layout_marginLeft="42dp"
+      android:layout_marginStart="42dp"
+      android:drawableLeft="@drawable/ic_repeat_grey600_18dp"
+      android:drawablePadding="@dimen/spacing_large"
+      android:drawableStart="@drawable/ic_repeat_grey600_18dp"
+      android:visibility="gone"/>
+
+  <com.facebook.drawee.view.SimpleDraweeView
+      android:id="@+id/img_user"
+      android:layout_below="@id/txt_retweeted_msg"
+      android:layout_marginEnd="@dimen/spacing_large"
+      android:layout_marginRight="@dimen/spacing_large"
+      fresco:overlayImage="@drawable/bg_feedback"
+      fresco:fadeDuration="200"
+      style="@style/UserImage"/>
+
+  <View
+      android:id="@+id/feedback_img_user"
+      style="@style/TapFeedback"
+      android:layout_alignBottom="@id/img_user"
+      android:layout_alignEnd="@id/img_user"
+      android:layout_alignLeft="@id/img_user"
+      android:layout_alignRight="@id/img_user"
+      android:layout_alignStart="@id/img_user"
+      android:layout_alignTop="@id/img_user"/>
+
+  <RelativeLayout
+      android:id="@+id/container_user_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/txt_retweeted_msg"
+      android:layout_marginTop="-4dp"
+      android:layout_toEndOf="@id/img_user"
+      android:layout_toLeftOf="@+id/txt_date"
+      android:layout_toRightOf="@id/img_user"
+      android:layout_toStartOf="@+id/txt_date">
+
     <TextView
-        android:id="@+id/txt_retweeted_msg"
-        style="@style/TextSub"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing"
-        android:layout_marginLeft="42dp"
-        android:layout_marginStart="42dp"
-        android:drawableLeft="@drawable/ic_repeat_grey600_18dp"
-        android:drawablePadding="@dimen/spacing_large"
-        android:drawableStart="@drawable/ic_repeat_grey600_18dp"
-        android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/img_user"
-        style="@style/UserImage"
-        android:layout_below="@id/txt_retweeted_msg"
-        android:layout_marginEnd="@dimen/spacing_large"
-        android:layout_marginRight="@dimen/spacing_large" />
-
-    <View
-        android:id="@+id/feedback_img_user"
-        style="@style/TapFeedback"
-        android:layout_alignBottom="@id/img_user"
-        android:layout_alignEnd="@id/img_user"
-        android:layout_alignLeft="@id/img_user"
-        android:layout_alignRight="@id/img_user"
-        android:layout_alignStart="@id/img_user"
-        android:layout_alignTop="@id/img_user" />
-
-    <RelativeLayout
-        android:id="@+id/container_user_name"
+        android:id="@+id/txt_user_name"
+        style="@style/TextUserName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_retweeted_msg"
-        android:layout_marginTop="-4dp"
-        android:layout_toEndOf="@id/img_user"
-        android:layout_toLeftOf="@+id/txt_date"
-        android:layout_toRightOf="@id/img_user"
-        android:layout_toStartOf="@+id/txt_date">
-
-        <TextView
-            android:id="@+id/txt_user_name"
-            style="@style/TextUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txt_user_screen_name"
-            style="@style/TextSub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/spacing_small"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:layout_toEndOf="@id/txt_user_name"
-            android:layout_toRightOf="@id/txt_user_name" />
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/txt_date"
+        android:id="@+id/txt_user_screen_name"
         style="@style/TextSub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/txt_retweeted_msg"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/spacing_small"
         android:layout_marginStart="@dimen/spacing_small"
-        android:layout_marginTop="-2dp" />
+        android:layout_toEndOf="@id/txt_user_name"
+        android:layout_toRightOf="@id/txt_user_name"/>
 
-    <RelativeLayout
-        android:id="@+id/container_tweet"
+  </RelativeLayout>
+
+  <TextView
+      android:id="@+id/txt_date"
+      style="@style/TextSub"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_below="@id/txt_retweeted_msg"
+      android:layout_marginLeft="@dimen/spacing_small"
+      android:layout_marginStart="@dimen/spacing_small"
+      android:layout_marginTop="-2dp"/>
+
+  <RelativeLayout
+      android:id="@+id/container_tweet"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/container_user_name"
+      android:layout_marginTop="@dimen/spacing_small"
+      android:layout_toEndOf="@id/img_user"
+      android:layout_toRightOf="@id/img_user">
+
+    <TextView
+        android:id="@+id/txt_tweet"
+        style="@style/TextContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img_tweet_media"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/container_user_name"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_toEndOf="@id/img_user"
-        android:layout_toRightOf="@id/img_user">
+        fresco:viewAspectRatio="1.33"
+        android:layout_below="@id/txt_tweet"
+        android:layout_marginTop="@dimen/spacing"
+        android:scaleType="centerCrop"
+        fresco:overlayImage="@drawable/bg_feedback"
+        fresco:fadeDuration="200"
+        android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/txt_tweet"
-            style="@style/TextContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+  </RelativeLayout>
 
-        <com.twitter.sdk.android.tweetui.internal.util.AspectRatioImageView
-            android:id="@+id/img_tweet_media"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_tweet"
-            android:layout_marginTop="@dimen/spacing"
-            android:scaleType="centerCrop"
-            android:visibility="gone" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/container_tweet"
+      android:layout_marginTop="@dimen/spacing_large"
+      android:layout_toEndOf="@id/img_user"
+      android:layout_toRightOf="@id/img_user"
+      android:orientation="horizontal">
 
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/txt_reply"
+        style="@style/TextSub.Action"
+        android:drawableLeft="@drawable/ic_reply_grey600_18dp"
+        android:drawableStart="@drawable/ic_reply_grey600_18dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txt_retweet"
+        style="@style/TextSub.Action"
+        android:drawableLeft="@drawable/ic_repeat_grey600_18dp"
+        android:drawableStart="@drawable/ic_repeat_grey600_18dp"/>
+
+    <TextView
+        android:id="@+id/txt_favorite"
+        style="@style/TextSub.Action"
+        android:drawableLeft="@drawable/ic_grade_grey600_18dp"
+        android:drawableStart="@drawable/ic_grade_grey600_18dp"/>
+
+    <ImageView
+        android:id="@+id/img_follow"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/container_tweet"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:layout_toEndOf="@id/img_user"
-        android:layout_toRightOf="@id/img_user"
-        android:orientation="horizontal">
+        android:src="@drawable/ic_person_add_grey600_18dp"/>
 
-        <TextView
-            android:id="@+id/txt_reply"
-            style="@style/TextSub.Action"
-            android:drawableLeft="@drawable/ic_reply_grey600_18dp"
-            android:drawableStart="@drawable/ic_reply_grey600_18dp" />
-
-        <TextView
-            android:id="@+id/txt_retweet"
-            style="@style/TextSub.Action"
-            android:drawableLeft="@drawable/ic_repeat_grey600_18dp"
-            android:drawableStart="@drawable/ic_repeat_grey600_18dp" />
-
-        <TextView
-            android:id="@+id/txt_favorite"
-            style="@style/TextSub.Action"
-            android:drawableLeft="@drawable/ic_grade_grey600_18dp"
-            android:drawableStart="@drawable/ic_grade_grey600_18dp" />
-
-        <ImageView
-            android:id="@+id/img_follow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_person_add_grey600_18dp" />
-
-    </LinearLayout>
+  </LinearLayout>
 
 </RelativeLayout>
