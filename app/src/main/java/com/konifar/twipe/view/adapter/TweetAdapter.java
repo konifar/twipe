@@ -40,7 +40,7 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
 
   public void addAll(Collection<TweetModel> tweetModels) {
     items.addAll(tweetModels);
-    notifyContentItemRangeInserted(items.size() - tweetModels.size(), items.size());
+    notifyContentItemRangeInserted(getContentItemCount() - tweetModels.size(), tweetModels.size());
   }
 
   private void bindData(TweetModel tweetModel, ViewHolder holder) {
@@ -141,6 +141,10 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
   protected void onBindContentItemViewHolder(RecyclerView.ViewHolder holder, int position) {
     TweetModel tweetModel = items.get(position);
     bindData(tweetModel, (ViewHolder) holder);
+  }
+
+  public TweetModel getLastItem() {
+    return items.get(items.size() - 1);
   }
 
   static class ViewHolder extends RecyclerView.ViewHolder {
