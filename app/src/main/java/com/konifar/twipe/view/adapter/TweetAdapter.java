@@ -1,22 +1,24 @@
 package com.konifar.twipe.view.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.konifar.twipe.R;
 import com.konifar.twipe.model.pojo.MediaModel;
 import com.konifar.twipe.model.pojo.TweetModel;
 import com.konifar.twipe.model.pojo.UserModel;
 import com.konifar.twipe.util.DateUtil;
-import com.twitter.sdk.android.tweetui.internal.util.AspectRatioImageView;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -66,8 +68,12 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
       Collection<MediaModel> mediaModels = tweetModel.getAttachment().getMedias();
       if (mediaModels != null && !mediaModels.isEmpty()) {
         holder.mImgTweetMedia.setVisibility(View.VISIBLE);
-        //MediaEntity media = mediaModels.get(0);
-        //ImageLoader.getInstance().displayImage(media.mediaUrl, holder.mImgTweetMedia);
+        MediaModel mediaModel = mediaModels.iterator().next();
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+            .setUri(Uri.parse(mediaModel.getMediaUrl()))
+            .setAutoPlayAnimations(true)
+            .build();
+        holder.mImgTweetMedia.setController(controller);
       } else {
         holder.mImgTweetMedia.setVisibility(View.GONE);
       }
@@ -88,7 +94,7 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
 
   private void bindUser(TweetModel tweetModel, ViewHolder holder) {
     UserModel userModel = tweetModel.getUser();
-    //ImageLoader.getInstance().displayImage(userModel.profileImageUrl, holder.mImgUser);
+    holder.mImgUser.setImageURI(Uri.parse(userModel.getProfileImageUrl()));
     holder.mTxtUserScreenName.setText(userModel.getScreenName());
     holder.mTxtUserName.setText(userModel.getName());
   }
@@ -139,12 +145,12 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
 
   static class ViewHolder extends RecyclerView.ViewHolder {
     @InjectView(R.id.txt_retweeted_msg) TextView mTxtRetweetedMsg;
-    @InjectView(R.id.img_user) ImageView mImgUser;
+    @InjectView(R.id.img_user) SimpleDraweeView mImgUser;
     @InjectView(R.id.txt_user_screen_name) TextView mTxtUserScreenName;
     @InjectView(R.id.txt_user_name) TextView mTxtUserName;
     @InjectView(R.id.txt_date) TextView mTxtDate;
     @InjectView(R.id.txt_tweet) TextView mTxtTweet;
-    @InjectView(R.id.img_tweet_media) AspectRatioImageView mImgTweetMedia;
+    @InjectView(R.id.img_tweet_media) SimpleDraweeView mImgTweetMedia;
     @InjectView(R.id.txt_retweet) TextView mTxtRetweet;
     @InjectView(R.id.txt_favorite) TextView mTxtFavorite;
 
