@@ -8,6 +8,7 @@ import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -104,7 +105,7 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
   }
 
   @Override protected int getFooterItemCount() {
-    return 0;
+    return 1;
   }
 
   @Override protected int getContentItemCount() {
@@ -118,7 +119,8 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
 
   @Override
   protected RecyclerView.ViewHolder onCreateFooterItemViewHolder(ViewGroup parent, int viewType) {
-    return null;
+    View view = LayoutInflater.from(context).inflate(R.layout.part_loading, parent, false);
+    return new FooterViewHolder(view);
   }
 
   @Override
@@ -134,7 +136,7 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
 
   @Override
   protected void onBindFooterItemViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+    //
   }
 
   @Override
@@ -145,6 +147,15 @@ public class TweetAdapter extends HeaderFooterRecyclerViewAdapter {
 
   public TweetModel getLastItem() {
     return items.get(items.size() - 1);
+  }
+
+  static class FooterViewHolder extends RecyclerView.ViewHolder {
+    @InjectView(R.id.loading) FrameLayout loading;
+
+    FooterViewHolder(View view) {
+      super(view);
+      ButterKnife.inject(this, view);
+    }
   }
 
   static class ViewHolder extends RecyclerView.ViewHolder {

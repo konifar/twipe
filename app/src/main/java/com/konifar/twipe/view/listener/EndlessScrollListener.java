@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 
 public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener {
 
-  private int visibleThreshold = 3;
   private int previousTotal = 0;
   private boolean loading = true;
   private int current_page = 1;
@@ -30,7 +29,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
       }
     }
 
-    if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+    if (!loading && (totalItemCount - visibleItemCount) <= firstVisibleItem) {
       current_page++;
 
       onLoadMore(current_page);

@@ -120,10 +120,6 @@ public class TweetListFragment extends BaseFragment {
     tweetDao.getHomeTweetList(null);
   }
 
-  //@OnClick(R.id.bt_retry) void onButtonRetryClick() {
-  //  //
-  //}
-
   public void onEventMainThread(TweetDao.OnLoadedEvent event) {
     renderTweetList(event.tweetModels);
     hideLoading();
