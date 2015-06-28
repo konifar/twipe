@@ -8,14 +8,10 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
-    <ListView
-        android:id="@+id/listview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/grey200"
-        android:dividerHeight="@dimen/line_small"
-        android:listSelector="@drawable/bg_feedback"
-        android:scrollingCache="false"/>
+        android:layout_height="match_parent"/>
 
   </android.support.v4.widget.SwipeRefreshLayout>
 
