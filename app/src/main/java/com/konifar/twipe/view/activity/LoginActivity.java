@@ -31,6 +31,6 @@ public class LoginActivity extends BaseActivity implements LoginFragment.LoginLi
   }
 
   @Override public void onLoginSuccessed() {
-    TweetListActivity.start(this);
+    MainActivity.start(this);
   }
 }

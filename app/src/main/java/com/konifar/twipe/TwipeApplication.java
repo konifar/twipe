@@ -9,9 +9,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class TwipeApplication extends Application {
 
-  private static final String TWITTER_KEY = "VCuRKICQcA4CVuN44oNXiS7Fh";
-  private static final String TWITTER_SECRET = "ZDnnmsWblWOzIB09meDDNDdAeHgGvIlsxDHeqRsW2SvB8LYbNE";
-
   @Override public void onCreate() {
     super.onCreate();
     Fresco.initialize(getApplicationContext());
@@ -19,7 +16,8 @@ public class TwipeApplication extends Application {
   }
 
   private void initFabric() {
-    TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+    TwitterAuthConfig authConfig =
+        new TwitterAuthConfig(Constants.TWITTER_KEY, Constants.TWITTER_SECRET);
     Fabric.with(this, new Crashlytics(), new Twitter(authConfig));
   }
 }
