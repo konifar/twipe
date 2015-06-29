@@ -16,6 +16,7 @@ import com.konifar.twipe.dao.TweetDao;
 import com.konifar.twipe.dao.TweetDaoImpl;
 import com.konifar.twipe.model.pojo.TweetModel;
 import com.konifar.twipe.view.adapter.TweetAdapter;
+import com.konifar.twipe.view.listener.EndlessScrollListener;
 import de.greenrobot.event.EventBus;
 import java.util.Collection;
 
@@ -62,11 +63,21 @@ public class TweetListFragment extends BaseFragment {
   }
 
   private void init() {
+    initRecyclerView();
+    tweetDao = new TweetDaoImpl(getActivity());
+  }
+
+  private void initRecyclerView() {
     recyclerView.setHasFixedSize(true);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     tweetsAdapter = new TweetAdapter(getActivity());
     recyclerView.setAdapter(tweetsAdapter);
-    tweetDao = new TweetDaoImpl(getActivity());
+    recyclerView.addOnScrollListener(
+        new EndlessScrollListener((LinearLayoutManager) recyclerView.getLayoutManager()) {
+          @Override public void onLoadMore(int page) {
+            tweetDao.getHomeTweetList(tweetsAdapter.getLastItem().getId() - 1);
+          }
+        });
   }
 
   private void showLoading() {
@@ -108,10 +119,6 @@ public class TweetListFragment extends BaseFragment {
     showLoading();
     tweetDao.getHomeTweetList(null);
   }
-
-  //@OnClick(R.id.bt_retry) void onButtonRetryClick() {
-  //  //
-  //}
 
   public void onEventMainThread(TweetDao.OnLoadedEvent event) {
     renderTweetList(event.tweetModels);

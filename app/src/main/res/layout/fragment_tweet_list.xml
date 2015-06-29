@@ -10,14 +10,11 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
   </android.support.v4.widget.SwipeRefreshLayout>
-
-  <include
-      android:id="@+id/loading"
-      layout="@layout/part_loading"/>
 
   <TextView
       android:id="@+id/txt_error"
