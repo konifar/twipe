@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity {
     UserModel userModel = event.userModel;
     if (userModel != null) {
       imgUser.setImageURI(Uri.parse(userModel.getProfileImageUrl()));
-      imgUserCover.setImageURI(Uri.parse(userModel.getProfileBackgroundImageUrl()));
+      imgUserCover.setImageURI(Uri.parse(userModel.getProfileBannerUrl()));
       txtUserName.setText(userModel.getName());
       txtUserAccount.setText(userModel.getScreenName());
     }
