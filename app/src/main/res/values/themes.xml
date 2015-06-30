@@ -3,8 +3,9 @@
 
   <style name="NoActionBarTheme"
       parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="colorPrimary">@color/theme600</item>
+    <item name="colorPrimary">@color/theme500</item>
     <item name="colorPrimaryDark">@color/theme600</item>
+    <item name="colorAccent">@color/accent500</item>
     <item name="android:textColorPrimary">@color/white</item>
     <item name="android:textColorSecondary">@color/white</item>
     <item name="android:windowBackground">@color/white</item>
