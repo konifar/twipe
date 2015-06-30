@@ -24,4 +24,8 @@
   <!-- Radius -->
   <dimen name="radius_medium">4dp</dimen>
 
+  <!-- Component -->
+  <dimen name="drawer_header">144dp</dimen>
+  <dimen name="drawer_user_icon">60dp</dimen>
+
 </resources>
