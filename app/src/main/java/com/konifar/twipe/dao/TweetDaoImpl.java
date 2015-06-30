@@ -17,37 +17,38 @@ public class TweetDaoImpl implements TweetDao {
   private final ThreadExecuter threadExecutor;
   private final TweetDataStoreFactory tweetDataStoreFactory;
 
-  public TweetDaoImpl(@NonNull Context context) {
+  private TweetDaoImpl(@NonNull Context context) {
     this.tweetDataStoreFactory = TweetDataStoreFactory.getInstance(context);
     this.threadExecutor = JobExecuter.getInstance();
   }
 
-  private static TweetDaoImpl getInstance(@NonNull Context context) {
+  public static TweetDaoImpl getInstance(@NonNull Context context) {
     if (instance == null) {
       instance = new TweetDaoImpl(context);
     }
     return instance;
   }
 
-  @Override public void getHomeTweetList(final Long lastTweetId) {
+  @Override public void getHomeTweetList(final Long lastTweetId, final String tag) {
     final TweetDataStore tweetDataStore = this.tweetDataStoreFactory.create();
     threadExecutor.execute(new Runnable() {
       @Override public void run() {
         tweetDataStore.getHomeTweetList(lastTweetId, GET_TWEET_COUNT,
             new TweetDataStore.TweetListCallback() {
               @Override public void onTweetListLoaded(Collection<TweetModel> tweets) {
-                EventBus.getDefault().post(new OnLoadedEvent(tweets));
+                EventBus.getDefault().post(new OnLoadedEvent(tweets, tag));
               }
 
               @Override public void onError(Exception exception) {
-                EventBus.getDefault().post(new OnErrorEvent(exception));
+                EventBus.getDefault().post(new OnErrorEvent(exception, tag));
               }
             });
       }
     });
   }
 
-  @Override public void getUserTweetList(final long userId, final Long lastTweetId) {
+  @Override
+  public void getUserTweetList(final long userId, final Long lastTweetId, final String tag) {
     final TweetDataStore tweetDataStore = this.tweetDataStoreFactory.create();
 
     threadExecutor.execute(new Runnable() {
@@ -55,11 +56,11 @@ public class TweetDaoImpl implements TweetDao {
         tweetDataStore.getUserTweetList(userId, lastTweetId, GET_TWEET_COUNT,
             new TweetDataStore.TweetListCallback() {
               @Override public void onTweetListLoaded(Collection<TweetModel> tweets) {
-                EventBus.getDefault().post(new OnLoadedEvent(tweets));
+                EventBus.getDefault().post(new OnLoadedEvent(tweets, tag));
               }
 
               @Override public void onError(Exception exception) {
-                EventBus.getDefault().post(new OnErrorEvent(exception));
+                EventBus.getDefault().post(new OnErrorEvent(exception, tag));
               }
             });
       }

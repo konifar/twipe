@@ -22,13 +22,24 @@ import java.util.Collection;
 
 public class TweetListFragment extends BaseFragment {
 
+  private static final String ARG_TAG = "arg_tag";
+
   @InjectView(R.id.recyclerView) RecyclerView recyclerView;
   @InjectView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
   @InjectView(R.id.txt_error) TextView txtError;
 
+  private String tag;
   private TweetDao tweetDao;
   private TweetAdapter tweetsAdapter;
   private TweetListListener tweetListListener;
+
+  public static TweetListFragment create(String tag) {
+    TweetListFragment fragment = new TweetListFragment();
+    Bundle args = new Bundle();
+    args.putString(ARG_TAG, tag);
+    fragment.setArguments(args);
+    return fragment;
+  }
 
   @Override public void onResume() {
     super.onResume();
@@ -44,6 +55,13 @@ public class TweetListFragment extends BaseFragment {
     super.onAttach(activity);
     if (activity instanceof TweetListListener) {
       this.tweetListListener = (TweetListListener) activity;
+    }
+  }
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    if (getArguments() != null) {
+      this.tag = getArguments().getString(ARG_TAG);
     }
   }
 
@@ -64,7 +82,7 @@ public class TweetListFragment extends BaseFragment {
 
   private void init() {
     initRecyclerView();
-    tweetDao = new TweetDaoImpl(getActivity());
+    tweetDao = TweetDaoImpl.getInstance(getActivity());
   }
 
   private void initRecyclerView() {
@@ -75,7 +93,7 @@ public class TweetListFragment extends BaseFragment {
     recyclerView.addOnScrollListener(
         new EndlessScrollListener((LinearLayoutManager) recyclerView.getLayoutManager()) {
           @Override public void onLoadMore(int page) {
-            tweetDao.getHomeTweetList(tweetsAdapter.getLastItem().getId() - 1);
+            tweetDao.getHomeTweetList(tweetsAdapter.getLastItem().getId() - 1, tag);
           }
         });
   }
@@ -117,18 +135,22 @@ public class TweetListFragment extends BaseFragment {
   private void loadTweetList() {
     hideRetry();
     showLoading();
-    tweetDao.getHomeTweetList(null);
+    tweetDao.getHomeTweetList(null, tag);
   }
 
   public void onEventMainThread(TweetDao.OnLoadedEvent event) {
-    renderTweetList(event.tweetModels);
-    hideLoading();
+    if (tag != null && tag.equals(event.tag)) {
+      hideLoading();
+      renderTweetList(event.tweetModels);
+    }
   }
 
   public void onEventMainThread(TweetDao.OnErrorEvent event) {
-    hideLoading();
-    showError(event.exception.getMessage());
-    showRetry();
+    if (tag != null && tag.equals(event.tag)) {
+      hideLoading();
+      showError(event.exception.getMessage());
+      showRetry();
+    }
   }
 
   public interface TweetListListener {

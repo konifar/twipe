@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.konifar.twipe.R;
+import com.konifar.twipe.view.adapter.TweetListPagerAdappter;
 import com.konifar.twipe.view.fragment.TweetListFragment;
 import com.twitter.sdk.android.Twitter;
 
@@ -22,6 +25,8 @@ public class MainActivity extends BaseActivity {
   @InjectView(R.id.toolbar) Toolbar toolbar;
   @InjectView(R.id.drawer_layout) DrawerLayout drawerLayout;
   @InjectView(R.id.nav_view) NavigationView navigationView;
+  @InjectView(R.id.tab_layout) TabLayout tabLayout;
+  @InjectView(R.id.view_pager) ViewPager viewPager;
 
   private ActionBarDrawerToggle toggle;
 
@@ -42,9 +47,17 @@ public class MainActivity extends BaseActivity {
       finish();
     } else {
       if (savedInstanceState == null) {
-        addFragment(R.id.container, new TweetListFragment());
+        initTabLayout();
       }
     }
+  }
+
+  private void initTabLayout() {
+    TweetListPagerAdappter adapter = new TweetListPagerAdappter(getSupportFragmentManager());
+    adapter.addFragment(TweetListFragment.create("0"), "Home");
+    adapter.addFragment(TweetListFragment.create("1"), "Profile");
+    viewPager.setAdapter(adapter);
+    tabLayout.setupWithViewPager(viewPager);
   }
 
   private void initActionBar() {
