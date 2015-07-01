@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
+    android:layout_height="@dimen/drawer_header"
     android:background="?attr/colorPrimaryDark"
-    android:padding="@dimen/spacing"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:orientation="vertical"
-    android:gravity="bottom">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+  <com.facebook.drawee.view.SimpleDraweeView
+      android:id="@+id/img_user_cover"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scaleType="centerCrop"
+      fresco:overlayImage="@drawable/bg_feedback"
+      fresco:fadeDuration="200"/>
+
+  <com.facebook.drawee.view.SimpleDraweeView
+      android:id="@+id/img_user"
+      android:layout_margin="@dimen/spacing"
+      android:layout_width="@dimen/drawer_user_icon"
+      android:layout_height="@dimen/drawer_user_icon"
+      fresco:viewAspectRatio="1"
+      android:scaleType="centerCrop"
+      fresco:overlayImage="@drawable/bg_feedback"
+      fresco:roundAsCircle="true"
+      fresco:fadeDuration="200"/>
 
   <TextView
+      android:id="@+id/txt_user_name"
+      android:layout_below="@id/img_user"
+      android:layout_marginLeft="@dimen/spacing"
+      android:layout_marginRight="@dimen/spacing"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="Username"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-</LinearLayout>
+  <TextView
+      android:id="@+id/txt_user_account"
+      android:layout_below="@id/txt_user_name"
+      android:layout_marginTop="@dimen/spacing_xsmall"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/spacing"
+      android:layout_marginRight="@dimen/spacing"
+      android:textColor="@color/grey200"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+</RelativeLayout>

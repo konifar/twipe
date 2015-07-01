@@ -4,7 +4,7 @@ import com.konifar.twipe.model.pojo.UserModel;
 import com.konifar.twipe.util.DateUtil;
 import com.twitter.sdk.android.core.models.User;
 
-class UserMapper {
+public class UserMapper {
 
   private static UserMapper instance;
 
